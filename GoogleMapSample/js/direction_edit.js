@@ -72,13 +72,12 @@ function initMap() {
             var leg=directions.routes[0].legs[0];
             var waypoints = leg.via_waypoint;
             
-            var path = { start: null, wp: [], end: null };
-            path.start = { lat: leg.start_location.lat(), lng: leg.start_location.lng() }
-            path.end = { lat: leg.end_location.lat(), lng: leg.end_location.lng() }
-
+            var path = [];
+            path.push([leg.start_location.lat(), leg.start_location.lng()]);
             waypoints.forEach(function (val, index, ar) {
-                path.wp.push({ lat: val.location.lat(), lng: val.location.lng() });
+                path.push([val.location.lat(), val.location.lng()]);
             });
+            path.push([leg.end_location.lat(), leg.end_location.lng()]);
 
             document.getElementById('path').innerHTML = JSON.stringify(path);
             /*
