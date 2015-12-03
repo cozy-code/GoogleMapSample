@@ -55,6 +55,10 @@ function initMap() {
 
             directionsDisplay.setMap(map);
             google.maps.event.addListener(directionsDisplay, 'directions_changed', directionsChanged);
+
+            // Sub Maps
+            map_start = new SubMap(map, 'start');
+            map_end = new SubMap(map, 'end');
         }
 
         function calcRoute(start,end) {
@@ -70,6 +74,24 @@ function initMap() {
             });
         }
 
+        function SubMap(mainmap,elementID) {
+            this.elementID = elementID;
+            this.mainmap = mainmap;
+            this.submap = null;
+            this.submap_direction = null;
+        }
+        SubMap.prototype.setDirections = function (directions, location) {
+            if (!this.submap) {
+                this.submap = new google.maps.Map(document.getElementById(this.elementID), {
+                    zoom: this.mainmap.getZoom() + 2,
+                    center: location
+                });
+                this.submap_direction = new google.maps.DirectionsRenderer({ preserveViewport: true });
+                this.submap_direction.setMap(this.submap);
+            }
+            this.submap.setCenter(location);
+            this.submap_direction.setDirections(directions);
+        };
 
         function directionsChanged() {
             //http://stackoverflow.com/questions/4657860/google-maps-saving-dragable-directions
@@ -77,16 +99,9 @@ function initMap() {
             var leg=directions.routes[0].legs[0];
             var waypoints = leg.via_waypoint;
             
-            if (!map_start) {
-                map_start = new google.maps.Map(document.getElementById('start'), {
-                    zoom: map.getZoom()+2,
-                    center: leg.start_location
-                });
-                map_start_direction = new google.maps.DirectionsRenderer({ preserveViewport: true });
-                map_start_direction.setMap(map_start);
-            }
-            map_start.setCenter(leg.start_location);
-            map_start_direction.setDirections(directions);
+            
+            map_start.setDirections(directions ,leg.start_location);
+            map_end.setDirections(directions, leg.end_location);
 
 
             var path = [];
