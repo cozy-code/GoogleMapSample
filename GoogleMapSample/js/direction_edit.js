@@ -14,24 +14,49 @@ function initMap() {
         var yokohama = new google.maps.LatLng(35.465778, 139.622088);
 
         var map;
+        var startMark;
+        var endMark;
         initizlize();
-        calcRoute();
 
         function initizlize(){
-
+            var initLocation = tokyo;
             map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 10,
-                center: tokyo
+                zoom: 14,
+                center: initLocation
+            });
+            /// 現在位置が使えたら使う
+            ///http://shared-blog.kddi-web.com/activity/210
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (pos) {
+                    map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
+                });
+            }
+
+            google.maps.event.addListener(map, 'click', function (event) {
+                // クリック地点の緯度経度
+                var position = event.latLng;
+                if (!startMark) {
+                    // マーカー生成
+                    startMark = new google.maps.Marker({
+                        draggable: true,// ドラッグ許可
+                        position: position,
+                        map: map
+                    });
+                } else if (!endMark) {
+                    endMark = position;
+                    calcRoute(startMark.getPosition(), position);
+                    startMark.setMap(null);
+                }
             });
 
             directionsDisplay.setMap(map);
             google.maps.event.addListener(directionsDisplay, 'directions_changed', directionsChanged);
         }
 
-        function calcRoute() {
+        function calcRoute(start,end) {
             var request = {
-                origin: tokyo,
-                destination: yokohama,
+                origin: start,
+                destination: end,
                 travelMode: google.maps.TravelMode.WALKING
             };
             directionsService.route(request, function (result, status) {
