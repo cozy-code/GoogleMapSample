@@ -66,6 +66,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="js\direction_print.js" />
     <Content Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -80,6 +81,7 @@
     <Content Include="js\direction_zoom.js" />
     <Content Include="js\direction_edit.js" />
     <Content Include="js\direction.js" />
+    <Content Include="samples\direction_print.html" />
     <Content Include="samples\direction_zoom.html" />
     <Content Include="samples\direction_edit.html" />
     <Content Include="samples\direction.html" />

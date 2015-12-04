@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Direction Print sample</title>
+    <meta charset="utf-8" />
+    <script src="../js/direction_print.js"></script>
+    <style>
+        #map{
+            width:1000px;
+            height:800px;
+            border:1px solid black;
+        }
+        #start{
+            width:500px;
+            height:500px;
+            border:1px solid black;
+        }
+        #end{
+            width:500px;
+            height:500px;
+            border:1px solid black;
+        }
+        #path{
+            visibility:hidden;
+            display:none;
+        }
+
+        @media print {
+            body {
+                zoom: 0.7;
+                -moz-transform: scale(0.7,0.7);
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+    <table>
+        <tr><td colspan="2" align="center"><div id="map"></div></td></tr>
+        <tr>
+            <td>
+                START:
+                <div id="start"></div>
+            </td>
+            <td>
+                END:
+                <div id="end"></div>
+            </td>
+        </tr>
+    </table>
+    <div id="path"></div>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?callback=initMap">
+    </script>
+</body>
+</html>
