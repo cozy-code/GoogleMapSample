@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Basic sample</title>
+    <script src="../js/marking.js"></script>
+	<meta charset="utf-8" />
+    <style>
+        #map {
+            margin: 0;
+            padding: 0;
+            width:800px;
+            height:640px;
+            border: 1px solid silver;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <p>
+        ZOOM:<span id="zoom"></span>
+    </p>
+    scriptでasyncを使う場合はcallbackパラメータで初期化するといいみたいです。
+    <script async defer src="https://maps.googleapis.com/maps/api/js?callback=initMap">
+    </script>
+</body>
+</html>

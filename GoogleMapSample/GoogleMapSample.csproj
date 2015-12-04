@@ -66,6 +66,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="js\marking.js" />
     <Content Include="js\direction_form.js" />
     <Content Include="js\direction_print.js" />
     <Content Include="packages.config" />
@@ -82,6 +83,7 @@
     <Content Include="js\direction_zoom.js" />
     <Content Include="js\direction_edit.js" />
     <Content Include="js\direction.js" />
+    <Content Include="samples\marking.html" />
     <Content Include="samples\direction_form.html" />
     <Content Include="samples\direction_print.html" />
     <Content Include="samples\direction_zoom.html" />
