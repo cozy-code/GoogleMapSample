@@ -66,6 +66,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="js\lib\markerclusterer.js" />
+    <Content Include="js\lib\markerclusterer_compiled.js" />
+    <Content Include="js\marking_clusterer.js" />
     <Content Include="js\marking.js" />
     <Content Include="js\direction_form.js" />
     <Content Include="js\direction_print.js" />
@@ -83,6 +86,7 @@
     <Content Include="js\direction_zoom.js" />
     <Content Include="js\direction_edit.js" />
     <Content Include="js\direction.js" />
+    <Content Include="samples\marking_clusterer.html" />
     <Content Include="samples\marking.html" />
     <Content Include="samples\direction_form.html" />
     <Content Include="samples\direction_print.html" />
