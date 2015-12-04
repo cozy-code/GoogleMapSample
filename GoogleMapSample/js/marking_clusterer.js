@@ -10,7 +10,9 @@ function initMap() {
         var nagoya = new google.maps.LatLng(35.1680449, 136.8764947);
         var map;
         var clusterer;
+        // 初期化！
         initizlize();
+
         //主要都市を中心にランダムにマーキング
         mark(tokyo, 300);
         mark(osaka, 300);
